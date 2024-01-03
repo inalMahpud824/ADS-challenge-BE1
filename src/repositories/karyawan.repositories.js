@@ -49,4 +49,12 @@ const getKaryawanById = async (nomor_induk) => {
   return result;
 };
 
-module.exports = { createKaryawan, updateKaryawan, getKaryawanById };
+const deleteKaryawanById = async ({nomor_induk}) => {
+  return await KaryawanModels.destroy({
+    where:{
+      nomor_induk
+    }
+  })
+}
+
+module.exports = { createKaryawan, updateKaryawan, getKaryawanById, deleteKaryawanById };
