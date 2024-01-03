@@ -4,9 +4,10 @@ const Karyawan = require("./karyawan.models");
 
 const Cuti = db.define("cuti", {
   id: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     allowNull: false,
+    autoIncrement: true,
   },
   no_induk_karyawan: {
     type: DataTypes.STRING,

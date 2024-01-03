@@ -1,3 +1,3 @@
 const karyawanRepositories = require('./karyawan.repositories')
-
-module.exports = {karyawanRepositories}
+const cutiRepositories = require('./cuti.repositories')
+module.exports = {karyawanRepositories, cutiRepositories,}

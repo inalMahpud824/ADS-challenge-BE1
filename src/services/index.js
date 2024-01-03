@@ -1,2 +1,3 @@
 const karyawanServices = require('./karyawan.services')
-module.exports = {karyawanServices}
+const cutiServices = require('./cuti.services')
+module.exports = {karyawanServices, cutiServices}
