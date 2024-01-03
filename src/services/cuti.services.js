@@ -14,5 +14,31 @@ const createCuti = async ({
   });
   return result;
 };
+const getCutiById = async ( {id} ) => {
+  const uid = parseInt(id);
+  const result = await cutiRepositories.getCutiById( uid );
+  return result;
+};
 
-module.exports = {createCuti}
+const updateCutiById = async (
+  {id,
+  no_induk_karyawan,
+  tgl_cuti,
+  lama_cuti,
+  keterangan}
+) => {
+  const uid = parseInt(id)
+  const cekId = await cutiRepositories.getCutiById(uid)
+  if(!cekId){
+    return
+  }
+  const result = await cutiRepositories.updateCutiById({
+    id,
+    no_induk_karyawan,
+    tgl_cuti,
+    lama_cuti,
+    keterangan,
+  });
+  return result
+};
+module.exports = { createCuti, getCutiById, updateCutiById };

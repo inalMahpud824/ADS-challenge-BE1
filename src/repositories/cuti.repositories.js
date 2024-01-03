@@ -12,6 +12,33 @@ const createCuti = async ({
     lama_cuti,
     keterangan,
   });
-  return result
+  return result;
 };
-module.exports = {createCuti}
+
+const getCutiById = async (id) => {
+  const result = await CutiModels.findByPk(id);
+
+  if (!result) {
+    throw new Error(404);
+  }
+  return result;
+};
+
+const updateCutiById = async ({
+  id,
+  no_induk_karyawan,
+  tgl_cuti,
+  lama_cuti,
+  keterangan,
+}) => {
+  const uid = parseInt(id)
+  return await CutiModels.update(
+    { no_induk_karyawan, tgl_cuti, lama_cuti, keterangan },
+    {
+      where: {
+        id: uid
+      },
+    }
+  );
+};
+module.exports = { createCuti, getCutiById, updateCutiById };
