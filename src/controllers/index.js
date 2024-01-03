@@ -1,3 +1,3 @@
 const karyawanControllers = require('./karyawan.controllers')
-const cutiControllers = require('./cuti.services')
+const cutiControllers = require('./cuti.controllers')
 module.exports = {karyawanControllers, cutiControllers}
