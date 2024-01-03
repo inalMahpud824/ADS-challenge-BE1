@@ -50,4 +50,44 @@ const deleteKaryawanById = async (req, res) => {
   }
 }
 
-module.exports = {createKaryawan, updateKaryawan, deleteKaryawanById}
+const getAllKaryawan = async (req, res) => {
+  try{
+    const result = await karyawanServices.getAllKaryawan()
+    res.status(200).json({
+      status: 'Success',
+      data: result
+    });
+  }catch(e){
+      return res.status(500).json({
+        status: 'failed',
+        message: 'internal server error'
+      });
+  }
+}
+
+const getKaryawanById = async (req, res) => {
+  const {nomor_induk} = req.params
+  try{
+    const result = await karyawanServices.getKaryawanById({ nomor_induk })
+    res.status(200).json({
+      status: 'Success',
+      data: result
+    });
+  }catch(e){
+    if(e.message == 404) {
+      return res.status(404).json({
+        status: 'failed',
+        message: 'Not found'
+      })
+    }else{
+      return res.status(500).json({
+        status: 'failed',
+        message: 'internal server error'
+      })
+    }
+  }
+}
+
+
+
+module.exports = {createKaryawan, updateKaryawan, deleteKaryawanById, getAllKaryawan, getKaryawanById}
