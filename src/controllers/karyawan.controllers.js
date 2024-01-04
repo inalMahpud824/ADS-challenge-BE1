@@ -9,6 +9,7 @@ const createKaryawan = async (req, res) => {
       message: 'karyawan Created'
     });
   }catch(e){
+    console.log(e)
     return res.status(500).json({
       status: 'failed',
       message: 'internal server error'

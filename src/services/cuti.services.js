@@ -1,13 +1,13 @@
 const { cutiRepositories } = require("../repositories");
 
 const createCuti = async ({
-  no_induk_karyawan,
+  nomor_induk,
   tgl_cuti,
   lama_cuti,
   keterangan,
 }) => {
   const result = await cutiRepositories.createCuti({
-    no_induk_karyawan,
+    nomor_induk,
     tgl_cuti,
     lama_cuti,
     keterangan,
@@ -22,7 +22,7 @@ const getCutiById = async ( {id} ) => {
 
 const updateCutiById = async (
   {id,
-  no_induk_karyawan,
+    nomor_induk,
   tgl_cuti,
   lama_cuti,
   keterangan}
@@ -34,7 +34,7 @@ const updateCutiById = async (
   }
   const result = await cutiRepositories.updateCutiById({
     id,
-    no_induk_karyawan,
+    nomor_induk,
     tgl_cuti,
     lama_cuti,
     keterangan,

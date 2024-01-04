@@ -1,4 +1,5 @@
-const KaryawanModels = require('./karyawan.models')
-const CutiModels = require('./cuti.models')
+const { PrismaClient } = require('@prisma/client')
 
-module.exports = {KaryawanModels, CutiModels}
+const prisma = new PrismaClient()
+
+module.exports = prisma

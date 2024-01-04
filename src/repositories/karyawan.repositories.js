@@ -1,3 +1,4 @@
+const prisma = require("../models/index");
 const { KaryawanModels } = require("../models/index");
 
 const createKaryawan = async ({
@@ -7,12 +8,14 @@ const createKaryawan = async ({
   tgl_lahir,
   tgl_join,
 }) => {
-  const result = await KaryawanModels.create({
-    nomor_induk,
-    nama,
-    alamat,
-    tgl_lahir,
-    tgl_join,
+  const result = await prisma.karyawan.create({
+    data: {
+      nomor_induk: nomor_induk,
+      nama: nama,
+      alamat: alamat,
+      tgl_lahir: tgl_lahir,
+      tgl_join: tgl_join,
+    },
   });
   return result;
 };
@@ -24,24 +27,29 @@ const updateKaryawan = async ({
   tgl_lahir,
   tgl_join,
 }) => {
-  return await KaryawanModels.update(
-    {
-      nomor_induk,
-      nama,
-      alamat,
-      tgl_lahir,
-      tgl_join,
+  return await prisma.karyawan.update({
+    where: {
+      nomor_induk: nomor_induk,
     },
-    {
-      where: {
-        nomor_induk
-      },
-    }
-  );
+    data: {
+      nomor_induk: nomor_induk,
+      nama: nama,
+      alamat: alamat,
+      tgl_lahir: tgl_lahir,
+      tgl_join: tgl_join,
+    },
+  });
 };
 
 const getKaryawanById = async (nomor_induk) => {
-  const result = await KaryawanModels.findByPk(nomor_induk);
+  const result = await prisma.karyawan.findUnique({
+    where: {
+      nomor_induk: nomor_induk
+    },
+    include: {
+      cuti: true
+    }
+  })
 
   if (!result) {
     throw new Error(404);
@@ -49,16 +57,22 @@ const getKaryawanById = async (nomor_induk) => {
   return result;
 };
 
-const deleteKaryawanById = async ({nomor_induk}) => {
-  return await KaryawanModels.destroy({
-    where:{
-      nomor_induk
+const deleteKaryawanById = async ({ nomor_induk }) => {
+  return await prisma.karyawan.deleteMany({
+    where: {
+      nomor_induk: nomor_induk
     }
   })
-}
+};
 
 const getAllKaryawan = async () => {
-  return await KaryawanModels.findAll()
-}
+  return await prisma.karyawan.findMany()
+};
 
-module.exports = { createKaryawan, updateKaryawan, getKaryawanById, deleteKaryawanById, getAllKaryawan };
+module.exports = {
+  createKaryawan,
+  updateKaryawan,
+  getKaryawanById,
+  deleteKaryawanById,
+  getAllKaryawan,
+};

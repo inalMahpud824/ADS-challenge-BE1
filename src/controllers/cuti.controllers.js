@@ -1,10 +1,10 @@
 const { cutiServices } = require("../services");
 
 const createCuti = async (req, res) => {
-  const { no_induk_karyawan, tgl_cuti, lama_cuti, keterangan } = req.body;
+  const { nomor_induk, tgl_cuti, lama_cuti, keterangan } = req.body;
   try {
     const result = await cutiServices.createCuti({
-      no_induk_karyawan,
+      nomor_induk,
       tgl_cuti,
       lama_cuti,
       keterangan,
@@ -14,6 +14,7 @@ const createCuti = async (req, res) => {
       message: "Cuti Created",
     });
   } catch (e) {
+    console.log(e)
     return res.status(500).json({
       status: "failed",
       message: "internal server error",
@@ -21,12 +22,12 @@ const createCuti = async (req, res) => {
   }
 };
 const updateCutiById = async (req, res) => {
-  const { no_induk_karyawan, tgl_cuti, lama_cuti, keterangan } = req.body;
+  const { nomor_induk, tgl_cuti, lama_cuti, keterangan } = req.body;
   const { id } = req.params;
   try {
     const result = await cutiServices.updateCutiById({
       id,
-      no_induk_karyawan,
+      nomor_induk,
       tgl_cuti,
       lama_cuti,
       keterangan,

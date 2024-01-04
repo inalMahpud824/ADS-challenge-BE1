@@ -1,8 +1,10 @@
 const { validationResult } = require("express-validator");
 const karyawanRequirements = require("./karyawan.validator");
+const cutiRequirements = require('./cuti.validator')
 
 const requirements = {
   ...karyawanRequirements,
+  ...cutiRequirements
 };
 
 function validate(validations) {
