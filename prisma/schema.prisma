@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Karyawan {
+  nomor_induk       String    @id
+  nama    String? @db.VarChar(100)
+  tgl_lahir  DateTime? @db.Date
+  tgl_join  DateTime? @db.Date
+  alamat String? @db.VarChar(200)
+  cuti Cuti[]
+
+  @@map("karyawan")
+}
+
+model Cuti {
+  id    Int    @id @default(autoincrement())
+  nomor_induk String? @db.VarChar(100) 
+  tgl_cuti DateTime? @db.Date
+  lama_cuti Int?
+  keterangan String? @db.VarChar(100)
+  karyawan      Karyawan?  @relation(fields: [nomor_induk], references: [nomor_induk]) 
+
+  @@map("cuti")
+}
+
