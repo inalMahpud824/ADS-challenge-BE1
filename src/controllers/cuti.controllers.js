@@ -15,8 +15,8 @@ const createCuti = async (req, res) => {
     });
   } catch (e) {
     return res.status(500).json({
-      status: 'failed',
-      message: 'internal server error'
+      status: "failed",
+      message: "internal server error",
     });
   }
 };
@@ -85,4 +85,19 @@ const deleteCutiById = async (req, res) => {
     }
   }
 };
-module.exports = { createCuti, updateCutiById, getCutiById, deleteCutiById };
+
+const getAllCuti = async (req, res) => {
+  try {
+    const result = await cutiServices.getAllCuti();
+    res.status(200).json({
+      status: "Success",
+      data: result,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      status: "failed",
+      message: "internal server error",
+    });
+  }
+};
+module.exports = { createCuti, updateCutiById, getCutiById, deleteCutiById, getAllCuti };

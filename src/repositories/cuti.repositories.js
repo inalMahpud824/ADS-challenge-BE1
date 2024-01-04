@@ -49,4 +49,8 @@ const deleteCutiById = async (id) => {
     }
   })
 }
-module.exports = { createCuti, getCutiById, updateCutiById, deleteCutiById };
+
+const getAllCuti = async () => {
+  return await CutiModels.findAll()
+}
+module.exports = { createCuti, getCutiById, updateCutiById, deleteCutiById, getAllCuti };
