@@ -65,7 +65,21 @@ const deleteKaryawanById = async ({ nomor_induk }) => {
   })
 };
 
-const getAllKaryawan = async () => {
+const getAllKaryawan = async (query) => {
+  if(query === 'name') {
+    return await prisma.karyawan.findMany({
+      orderBy:{
+        nama: 'asc'
+      }
+    })  
+  }else if(query === 'tgl_lahir') {
+    return await prisma.karyawan.findMany({
+      orderBy:{
+        tgl_lahir: 'asc'
+      }
+    })
+
+  }
   return await prisma.karyawan.findMany()
 };
 

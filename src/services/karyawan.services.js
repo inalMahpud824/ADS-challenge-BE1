@@ -50,8 +50,8 @@ const getKaryawanById = async ({ nomor_induk }) => {
   return result;
 };
 
-const getAllKaryawan = async () => {
-  const result = await karyawanRepositories.getAllKaryawan();
+const getAllKaryawan = async (query) => {
+  const result = await karyawanRepositories.getAllKaryawan(query);
   return result;
 };
 

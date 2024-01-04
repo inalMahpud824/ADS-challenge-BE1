@@ -55,8 +55,9 @@ const deleteKaryawanById = async (req, res) => {
 }
 
 const getAllKaryawan = async (req, res) => {
+  const {sortby} = req.query
   try{
-    const result = await karyawanServices.getAllKaryawan()
+    const result = await karyawanServices.getAllKaryawan(sortby)
     res.status(200).json({
       status: 'Success',
       data: result
