@@ -64,7 +64,14 @@ const deleteCutiById = async (id) => {
   });
 };
 
-const getAllCuti = async () => {
+const getAllCuti = async (query) => {
+  if(query === 'tgl_cuti') {
+    return await prisma.cuti.findMany({
+      orderBy: {
+        tgl_cuti: 'desc'
+      }
+    });
+  }
   return await prisma.cuti.findMany();
 };
 module.exports = {

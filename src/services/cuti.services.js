@@ -52,8 +52,8 @@ const deleteCutiById = async ({id}) => {
   return result
 }
 
-const getAllCuti = async () => {
-  const result = await cutiRepositories.getAllCuti()
+const getAllCuti = async (query) => {
+  const result = await cutiRepositories.getAllCuti(query)
   return result 
 }
 module.exports = { createCuti, getCutiById, updateCutiById, deleteCutiById, getAllCuti };

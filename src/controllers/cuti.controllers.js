@@ -88,8 +88,9 @@ const deleteCutiById = async (req, res) => {
 };
 
 const getAllCuti = async (req, res) => {
+  const {sortby} = req.query
   try {
-    const result = await cutiServices.getAllCuti();
+    const result = await cutiServices.getAllCuti(sortby);
     res.status(200).json({
       status: "Success",
       data: result,
