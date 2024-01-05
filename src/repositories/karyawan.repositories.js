@@ -8,6 +8,14 @@ const createKaryawan = async ({
   tgl_lahir,
   tgl_join,
 }) => {
+  const cekNomerInduk = await prisma.karyawan.findUnique({
+    where:{
+      nomor_induk: nomor_induk
+    }
+  })
+  if(cekNomerInduk){
+    throw new Error(400)
+  }
   const result = await prisma.karyawan.create({
     data: {
       nomor_induk: nomor_induk,
@@ -78,7 +86,6 @@ const getAllKaryawan = async (query) => {
         tgl_lahir: 'asc'
       }
     })
-
   }
   return await prisma.karyawan.findMany()
 };

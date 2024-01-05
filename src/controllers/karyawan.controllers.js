@@ -10,6 +10,12 @@ const createKaryawan = async (req, res) => {
     });
   }catch(e){
     console.log(e)
+    if(e.message == 400) {
+      return res.status(400).json({
+        status: 'failed',
+        message: 'No induk alredy exist'
+      });
+    }
     return res.status(500).json({
       status: 'failed',
       message: 'internal server error'
