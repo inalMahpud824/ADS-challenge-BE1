@@ -8,3 +8,5 @@ app.use(routes)
 app.listen(port, () => {
   console.log('server berjalan ' + port)
 })
+
+module.exports = {app}
